@@ -4,7 +4,7 @@ import (
 	"crypto/md5"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -301,7 +301,7 @@ func (connection *SubsonicConnection) getResponse(caller, requestUrl string) (*S
 		defer res.Body.Close()
 	}
 
-	responseBody, readErr := ioutil.ReadAll(res.Body)
+	responseBody, readErr := io.ReadAll(res.Body)
 
 	if readErr != nil {
 		return nil, err
